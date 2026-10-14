@@ -47,17 +47,17 @@ export function SupplierManager({ suppliers }: { suppliers: Supplier[] }) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <p className="mb-3 text-sm font-semibold text-slate-700">Proveedores</p>
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
+      <p className="mb-3 text-sm font-semibold text-slate-200">Proveedores</p>
 
       <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3">
         <div>
-          <label className="block text-xs font-medium text-slate-600">Nombre</label>
+          <label className="block text-xs font-medium text-slate-300">Nombre</label>
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           />
         </div>
         <button
@@ -68,28 +68,28 @@ export function SupplierManager({ suppliers }: { suppliers: Supplier[] }) {
           {editingId ? "Guardar cambios" : "Agregar proveedor"}
         </button>
         {editingId && (
-          <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+          <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
             Cancelar
           </button>
         )}
       </form>
 
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
 
       {suppliers.length === 0 ? (
-        <p className="mt-3 text-sm text-slate-400">Sin proveedores todavía.</p>
+        <p className="mt-3 text-sm text-slate-500">Sin proveedores todavía.</p>
       ) : (
         <ul className="mt-3 flex flex-wrap gap-2">
           {suppliers.map((supplier) => (
             <li
               key={supplier.id}
-              className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700"
+              className="flex items-center gap-2 rounded-full bg-slate-800 px-3 py-1 text-sm text-slate-200"
             >
               {supplier.name}
-              <button onClick={() => handleEdit(supplier)} className="text-xs text-indigo-600 hover:underline">
+              <button onClick={() => handleEdit(supplier)} className="text-xs text-indigo-400 hover:underline">
                 Editar
               </button>
-              <button onClick={() => handleDelete(supplier.id)} className="text-xs text-red-500 hover:underline">
+              <button onClick={() => handleDelete(supplier.id)} className="text-xs text-red-400 hover:underline">
                 Eliminar
               </button>
             </li>

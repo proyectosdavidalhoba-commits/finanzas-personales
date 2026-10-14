@@ -13,7 +13,7 @@ export default async function PresupuestosPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Presupuestos</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Presupuestos</h1>
       <BudgetManager
         budgets={(budgets as Budget[]) ?? []}
         categories={(categories as Category[]) ?? []}

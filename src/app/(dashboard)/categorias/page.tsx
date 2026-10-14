@@ -11,7 +11,7 @@ export default async function CategoriasPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Categorías</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Categorías</h1>
       <CategoryManager categories={(categories as Category[]) ?? []} />
     </div>
   );

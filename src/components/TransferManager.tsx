@@ -86,14 +86,14 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-5">
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-5">
         <div>
-          <label className="block text-xs font-medium text-slate-600">De la cuenta</label>
+          <label className="block text-xs font-medium text-slate-300">De la cuenta</label>
           <select
             required
             value={form.from_account_id}
             onChange={(e) => setForm({ ...form, from_account_id: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           >
             {accounts.map((a) => (
               <option key={a.id} value={a.id}>{a.name}</option>
@@ -101,12 +101,12 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">A la cuenta</label>
+          <label className="block text-xs font-medium text-slate-300">A la cuenta</label>
           <select
             required
             value={form.to_account_id}
             onChange={(e) => setForm({ ...form, to_account_id: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           >
             {accounts.map((a) => (
               <option key={a.id} value={a.id}>{a.name}</option>
@@ -114,7 +114,7 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Monto</label>
+          <label className="block text-xs font-medium text-slate-300">Monto</label>
           <input
             type="number"
             step="0.01"
@@ -122,25 +122,25 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
             required
             value={form.amount}
             onChange={(e) => setForm({ ...form, amount: Number(e.target.value) })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Fecha</label>
+          <label className="block text-xs font-medium text-slate-300">Fecha</label>
           <input
             type="date"
             required
             value={form.date}
             onChange={(e) => setForm({ ...form, date: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Descripción</label>
+          <label className="block text-xs font-medium text-slate-300">Descripción</label>
           <input
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
 
@@ -153,19 +153,19 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
             {editingId ? "Guardar cambios" : "Agregar transferencia"}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+            <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
               Cancelar
             </button>
           )}
         </div>
       </form>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900 shadow-sm">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-100 text-left text-xs text-slate-500">
+            <tr className="border-b border-slate-700 text-left text-xs text-slate-400">
               <th className="px-4 py-2">Fecha</th>
               <th className="px-4 py-2">De</th>
               <th className="px-4 py-2">A</th>
@@ -177,25 +177,25 @@ export function TransferManager({ transfers, accounts }: { transfers: Transfer[]
           <tbody>
             {transfers.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-6 text-center text-slate-400">
+                <td colSpan={6} className="px-4 py-6 text-center text-slate-500">
                   Sin transferencias.
                 </td>
               </tr>
             ) : (
               transfers.map((t) => (
-                <tr key={t.id} className="border-b border-slate-50 hover:bg-slate-50">
-                  <td className="px-4 py-2 text-slate-500">{t.date}</td>
-                  <td className="px-4 py-2 text-slate-700">{accountById.get(t.from_account_id)?.name ?? "—"}</td>
-                  <td className="px-4 py-2 text-slate-700">{accountById.get(t.to_account_id)?.name ?? "—"}</td>
-                  <td className="px-4 py-2 text-slate-500">{t.description}</td>
-                  <td className="px-4 py-2 text-right font-medium text-indigo-600">
+                <tr key={t.id} className="border-b border-slate-800 hover:bg-slate-800/60">
+                  <td className="px-4 py-2 text-slate-400">{t.date}</td>
+                  <td className="px-4 py-2 text-slate-200">{accountById.get(t.from_account_id)?.name ?? "—"}</td>
+                  <td className="px-4 py-2 text-slate-200">{accountById.get(t.to_account_id)?.name ?? "—"}</td>
+                  <td className="px-4 py-2 text-slate-400">{t.description}</td>
+                  <td className="px-4 py-2 text-right font-medium text-indigo-400">
                     ${t.amount.toLocaleString("es-CO")}
                   </td>
                   <td className="px-4 py-2 text-right text-xs">
-                    <button onClick={() => handleEdit(t)} className="mr-2 text-indigo-600 hover:underline">
+                    <button onClick={() => handleEdit(t)} className="mr-2 text-indigo-400 hover:underline">
                       Editar
                     </button>
-                    <button onClick={() => handleDelete(t.id)} className="text-red-500 hover:underline">
+                    <button onClick={() => handleDelete(t.id)} className="text-red-400 hover:underline">
                       Eliminar
                     </button>
                   </td>

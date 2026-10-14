@@ -92,15 +92,15 @@ export function PurchaseManager({
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="space-y-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
         <div className="flex flex-wrap gap-3">
           <div>
-            <label className="block text-xs font-medium text-slate-600">Proveedor</label>
+            <label className="block text-xs font-medium text-slate-300">Proveedor</label>
             <select
               required
               value={supplierId}
               onChange={(e) => setSupplierId(e.target.value)}
-              className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
             >
               {suppliers.map((s) => (
                 <option key={s.id} value={s.id}>{s.name}</option>
@@ -108,21 +108,21 @@ export function PurchaseManager({
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-600">Fecha</label>
+            <label className="block text-xs font-medium text-slate-300">Fecha</label>
             <input
               type="date"
               required
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-600">Tipo de pago</label>
+            <label className="block text-xs font-medium text-slate-300">Tipo de pago</label>
             <select
               value={paymentType}
               onChange={(e) => setPaymentType(e.target.value as PaymentType)}
-              className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
             >
               <option value="credit">Crédito (queda pendiente)</option>
               <option value="cash">Contado (se paga ya)</option>
@@ -131,12 +131,12 @@ export function PurchaseManager({
           {paymentType === "cash" && (
             <>
               <div>
-                <label className="block text-xs font-medium text-slate-600">Cuenta de pago</label>
+                <label className="block text-xs font-medium text-slate-300">Cuenta de pago</label>
                 <select
                   required
                   value={accountId}
                   onChange={(e) => setAccountId(e.target.value)}
-                  className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+                  className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
                 >
                   {accounts.map((a) => (
                     <option key={a.id} value={a.id}>{a.name}</option>
@@ -144,12 +144,12 @@ export function PurchaseManager({
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600">Categoría</label>
+                <label className="block text-xs font-medium text-slate-300">Categoría</label>
                 <select
                   required
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+                  className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
                 >
                   {expenseCategories.map((c) => (
                     <option key={c.id} value={c.id}>{c.name}</option>
@@ -161,61 +161,61 @@ export function PurchaseManager({
         </div>
 
         <div className="space-y-2">
-          <p className="text-xs font-medium text-slate-600">Productos</p>
+          <p className="text-xs font-medium text-slate-300">Productos</p>
           {items.map((item, index) => (
             <div key={index} className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:items-end">
               <div className="sm:col-span-2">
-                <label className="block text-xs text-slate-500">Producto</label>
+                <label className="block text-xs text-slate-400">Producto</label>
                 <input
                   value={item.product_name}
                   onChange={(e) => updateItem(index, { product_name: e.target.value })}
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+                  className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs text-slate-500">Unidades</label>
+                <label className="block text-xs text-slate-400">Unidades</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0.01"
                   value={item.quantity}
                   onChange={(e) => updateItem(index, { quantity: Number(e.target.value) })}
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+                  className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs text-slate-500">Precio unitario</label>
+                <label className="block text-xs text-slate-400">Precio unitario</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0.01"
                   value={item.unit_price}
                   onChange={(e) => updateItem(index, { unit_price: Number(e.target.value) })}
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+                  className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
                 />
               </div>
               <div className="flex items-center justify-between gap-2">
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-slate-300">
                   ${(item.quantity * item.unit_price).toLocaleString("es-CO")}
                 </span>
                 <button
                   type="button"
                   onClick={() => removeRow(index)}
                   disabled={items.length === 1}
-                  className="text-xs text-red-500 hover:underline disabled:opacity-30"
+                  className="text-xs text-red-400 hover:underline disabled:opacity-30"
                 >
                   Quitar
                 </button>
               </div>
             </div>
           ))}
-          <button type="button" onClick={addRow} className="text-xs font-medium text-indigo-600 hover:underline">
+          <button type="button" onClick={addRow} className="text-xs font-medium text-indigo-400 hover:underline">
             + Agregar producto
           </button>
         </div>
 
-        <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-sm font-semibold text-slate-700">
+        <div className="flex items-center justify-between border-t border-slate-700 pt-3">
+          <span className="text-sm font-semibold text-slate-200">
             Total compra: ${total.toLocaleString("es-CO")}
           </span>
           <button
@@ -228,11 +228,11 @@ export function PurchaseManager({
         </div>
       </form>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="space-y-3">
         {purchases.length === 0 ? (
-          <p className="text-sm text-slate-400">Sin compras a proveedores todavía.</p>
+          <p className="text-sm text-slate-500">Sin compras a proveedores todavía.</p>
         ) : (
           purchases.map((purchase) => (
             <PurchaseCard

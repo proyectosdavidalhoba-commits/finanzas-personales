@@ -69,7 +69,7 @@ export default async function ProveedoresPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-semibold text-slate-900">Proveedores</h1>
+      <h1 className="text-xl font-semibold text-slate-50">Proveedores</h1>
       <SupplierManager suppliers={(suppliers as Supplier[]) ?? []} />
       <PurchaseManager
         purchases={purchasesWithDetails}

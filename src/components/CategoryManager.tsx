@@ -54,34 +54,34 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
         <div>
-          <label className="block text-xs font-medium text-slate-600">Nombre</label>
+          <label className="block text-xs font-medium text-slate-300">Nombre</label>
           <input
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Tipo</label>
+          <label className="block text-xs font-medium text-slate-300">Tipo</label>
           <select
             value={form.type}
             onChange={(e) => setForm({ ...form, type: e.target.value as TransactionType })}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           >
             <option value="income">Ingreso</option>
             <option value="expense">Egreso</option>
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Color</label>
+          <label className="block text-xs font-medium text-slate-300">Color</label>
           <input
             type="color"
             value={form.color}
             onChange={(e) => setForm({ ...form, color: e.target.value })}
-            className="mt-1 h-9 w-14 rounded-lg border border-slate-300"
+            className="mt-1 h-9 w-14 rounded-lg border border-slate-600 bg-slate-800 text-slate-100"
           />
         </div>
         <button
@@ -92,13 +92,13 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
           {editingId ? "Guardar cambios" : "Agregar categoría"}
         </button>
         {editingId && (
-          <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+          <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
             Cancelar
           </button>
         )}
       </form>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="grid gap-6 sm:grid-cols-2">
         <CategoryGroup title="Ingresos" items={income} onEdit={handleEdit} onDelete={handleDelete} />
@@ -120,23 +120,23 @@ function CategoryGroup({
   onDelete: (id: string) => void;
 }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h2 className="mb-3 text-sm font-semibold text-slate-700">{title}</h2>
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
+      <h2 className="mb-3 text-sm font-semibold text-slate-200">{title}</h2>
       {items.length === 0 ? (
-        <p className="text-sm text-slate-400">Sin categorías todavía.</p>
+        <p className="text-sm text-slate-500">Sin categorías todavía.</p>
       ) : (
         <ul className="space-y-2">
           {items.map((category) => (
-            <li key={category.id} className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-50">
+            <li key={category.id} className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-800/60">
               <div className="flex items-center gap-2">
                 <span className="h-3 w-3 rounded-full" style={{ backgroundColor: category.color }} />
-                <span className="text-sm text-slate-700">{category.name}</span>
+                <span className="text-sm text-slate-200">{category.name}</span>
               </div>
               <div className="flex gap-2 text-xs">
-                <button onClick={() => onEdit(category)} className="text-indigo-600 hover:underline">
+                <button onClick={() => onEdit(category)} className="text-indigo-400 hover:underline">
                   Editar
                 </button>
-                <button onClick={() => onDelete(category.id)} className="text-red-500 hover:underline">
+                <button onClick={() => onDelete(category.id)} className="text-red-400 hover:underline">
                   Eliminar
                 </button>
               </div>

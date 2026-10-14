@@ -13,7 +13,7 @@ export default async function RecurrentesPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Transacciones recurrentes</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Transacciones recurrentes</h1>
       <RecurringManager
         templates={(templates as RecurringTemplate[]) ?? []}
         accounts={(accounts as Account[]) ?? []}

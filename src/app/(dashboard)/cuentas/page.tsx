@@ -17,7 +17,7 @@ export default async function CuentasPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Cuentas</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Cuentas</h1>
       <AccountManager accounts={accs} balances={Object.fromEntries(balances)} />
     </div>
   );

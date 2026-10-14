@@ -80,7 +80,7 @@ export function BudgetManager({
   return (
     <div className="space-y-6">
       <div>
-        <label className="block text-xs font-medium text-slate-600">Mes</label>
+        <label className="block text-xs font-medium text-slate-300">Mes</label>
         <input
           type="month"
           value={month}
@@ -89,7 +89,7 @@ export function BudgetManager({
             setForm((f) => ({ ...f, month: e.target.value }));
             setEditingId(null);
           }}
-          className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+          className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
         />
       </div>
 
@@ -98,13 +98,13 @@ export function BudgetManager({
           Crea primero alguna categoría de egreso para poder definir presupuestos.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
           <div>
-            <label className="block text-xs font-medium text-slate-600">Categoría</label>
+            <label className="block text-xs font-medium text-slate-300">Categoría</label>
             <select
               value={form.category_id}
               onChange={(e) => setForm({ ...form, category_id: e.target.value })}
-              className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
             >
               {expenseCategories.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
@@ -112,7 +112,7 @@ export function BudgetManager({
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-600">Límite mensual</label>
+            <label className="block text-xs font-medium text-slate-300">Límite mensual</label>
             <input
               type="number"
               step="0.01"
@@ -120,7 +120,7 @@ export function BudgetManager({
               required
               value={form.amount_limit}
               onChange={(e) => setForm({ ...form, amount_limit: Number(e.target.value) })}
-              className="mt-1 w-32 rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-1 w-32 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm"
             />
           </div>
           <button
@@ -131,18 +131,18 @@ export function BudgetManager({
             {editingId ? "Guardar cambios" : "Agregar presupuesto"}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+            <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
               Cancelar
             </button>
           )}
         </form>
       )}
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="space-y-3">
         {budgetsForMonth.length === 0 ? (
-          <p className="text-sm text-slate-400">Sin presupuestos para este mes.</p>
+          <p className="text-sm text-slate-500">Sin presupuestos para este mes.</p>
         ) : (
           budgetsForMonth.map((b) => {
             const category = categoryById.get(b.category_id);
@@ -150,28 +150,28 @@ export function BudgetManager({
             const pct = Math.min(100, Math.round((spent / b.amount_limit) * 100));
             const over = spent > b.amount_limit;
             return (
-              <div key={b.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div key={b.id} className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-200">
                     <span className="h-2 w-2 rounded-full" style={{ backgroundColor: category?.color }} />
                     {category?.name ?? "—"}
                   </span>
                   <div className="flex gap-2 text-xs">
-                    <button onClick={() => handleEdit(b)} className="text-indigo-600 hover:underline">
+                    <button onClick={() => handleEdit(b)} className="text-indigo-400 hover:underline">
                       Editar
                     </button>
-                    <button onClick={() => handleDelete(b.id)} className="text-red-500 hover:underline">
+                    <button onClick={() => handleDelete(b.id)} className="text-red-400 hover:underline">
                       Eliminar
                     </button>
                   </div>
                 </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
                   <div
                     className={`h-full ${over ? "bg-red-500" : "bg-indigo-500"}`}
                     style={{ width: `${pct}%` }}
                   />
                 </div>
-                <p className={`mt-1 text-xs ${over ? "text-red-600" : "text-slate-500"}`}>
+                <p className={`mt-1 text-xs ${over ? "text-red-400" : "text-slate-400"}`}>
                   ${spent.toLocaleString("es-CO")} de ${b.amount_limit.toLocaleString("es-CO")} ({pct}%)
                   {over && " — presupuesto excedido"}
                 </p>

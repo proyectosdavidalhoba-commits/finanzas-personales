@@ -58,22 +58,22 @@ export function AccountManager({
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
         <div>
-          <label className="block text-xs font-medium text-slate-600">Nombre</label>
+          <label className="block text-xs font-medium text-slate-300">Nombre</label>
           <input
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Tipo</label>
+          <label className="block text-xs font-medium text-slate-300">Tipo</label>
           <select
             value={form.type}
             onChange={(e) => setForm({ ...form, type: e.target.value })}
-            className="mt-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           >
             {ACCOUNT_TYPES.map((t) => (
               <option key={t} value={t}>{t}</option>
@@ -81,13 +81,13 @@ export function AccountManager({
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Saldo inicial</label>
+          <label className="block text-xs font-medium text-slate-300">Saldo inicial</label>
           <input
             type="number"
             step="0.01"
             value={form.initial_balance}
             onChange={(e) => setForm({ ...form, initial_balance: Number(e.target.value) })}
-            className="mt-1 w-32 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
+            className="mt-1 w-32 rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-3 py-1.5 text-sm focus:border-indigo-500 focus:outline-none"
           />
         </div>
         <button
@@ -98,39 +98,39 @@ export function AccountManager({
           {editingId ? "Guardar cambios" : "Agregar cuenta"}
         </button>
         {editingId && (
-          <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+          <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
             Cancelar
           </button>
         )}
       </form>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
-      <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
         {accounts.length === 0 ? (
-          <p className="text-sm text-slate-400">Sin cuentas todavía.</p>
+          <p className="text-sm text-slate-500">Sin cuentas todavía.</p>
         ) : (
           <>
             <ul className="space-y-2">
               {accounts.map((account) => {
                 const currentBalance = balances[account.id] ?? account.initial_balance;
                 return (
-                  <li key={account.id} className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-50">
-                    <div className="text-sm text-slate-700">
+                  <li key={account.id} className="flex items-center justify-between rounded-lg px-2 py-1.5 hover:bg-slate-800/60">
+                    <div className="text-sm text-slate-200">
                       <span className="font-medium">{account.name}</span>{" "}
-                      <span className="text-slate-400">
+                      <span className="text-slate-500">
                         · {account.type} · saldo inicial ${account.initial_balance.toLocaleString("es-CO")}
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className={`text-sm font-semibold ${currentBalance < 0 ? "text-red-500" : "text-emerald-600"}`}>
+                      <span className={`text-sm font-semibold ${currentBalance < 0 ? "text-red-400" : "text-emerald-400"}`}>
                         Saldo actual: ${currentBalance.toLocaleString("es-CO")}
                       </span>
                       <div className="flex gap-2 text-xs">
-                        <button onClick={() => handleEdit(account)} className="text-indigo-600 hover:underline">
+                        <button onClick={() => handleEdit(account)} className="text-indigo-400 hover:underline">
                           Editar
                         </button>
-                        <button onClick={() => handleDelete(account.id)} className="text-red-500 hover:underline">
+                        <button onClick={() => handleDelete(account.id)} className="text-red-400 hover:underline">
                           Eliminar
                         </button>
                       </div>
@@ -139,9 +139,9 @@ export function AccountManager({
                 );
               })}
             </ul>
-            <div className="mt-3 flex items-center justify-between border-t border-slate-100 px-2 pt-3">
-              <span className="text-sm font-semibold text-slate-700">Total</span>
-              <span className={`text-sm font-semibold ${totalBalance < 0 ? "text-red-500" : "text-emerald-600"}`}>
+            <div className="mt-3 flex items-center justify-between border-t border-slate-700 px-2 pt-3">
+              <span className="text-sm font-semibold text-slate-200">Total</span>
+              <span className={`text-sm font-semibold ${totalBalance < 0 ? "text-red-400" : "text-emerald-400"}`}>
                 ${totalBalance.toLocaleString("es-CO")}
               </span>
             </div>

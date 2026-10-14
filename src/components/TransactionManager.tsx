@@ -113,25 +113,25 @@ export function TransactionManager({
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-6">
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-6">
         <div>
-          <label className="block text-xs font-medium text-slate-600">Tipo</label>
+          <label className="block text-xs font-medium text-slate-300">Tipo</label>
           <select
             value={form.type}
             onChange={(e) => handleTypeChange(e.target.value as TransactionType)}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           >
             <option value="income">Ingreso</option>
             <option value="expense">Egreso</option>
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Cuenta</label>
+          <label className="block text-xs font-medium text-slate-300">Cuenta</label>
           <select
             required
             value={form.account_id}
             onChange={(e) => setForm({ ...form, account_id: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           >
             {accounts.map((a) => (
               <option key={a.id} value={a.id}>{a.name}</option>
@@ -139,12 +139,12 @@ export function TransactionManager({
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Categoría</label>
+          <label className="block text-xs font-medium text-slate-300">Categoría</label>
           <select
             required
             value={form.category_id}
             onChange={(e) => setForm({ ...form, category_id: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           >
             {categoriesForType.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
@@ -152,7 +152,7 @@ export function TransactionManager({
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Monto</label>
+          <label className="block text-xs font-medium text-slate-300">Monto</label>
           <input
             type="number"
             step="0.01"
@@ -160,25 +160,25 @@ export function TransactionManager({
             required
             value={form.amount}
             onChange={(e) => setForm({ ...form, amount: Number(e.target.value) })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Fecha</label>
+          <label className="block text-xs font-medium text-slate-300">Fecha</label>
           <input
             type="date"
             required
             value={form.date}
             onChange={(e) => setForm({ ...form, date: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600">Descripción</label>
+          <label className="block text-xs font-medium text-slate-300">Descripción</label>
           <input
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+            className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
           />
         </div>
 
@@ -191,20 +191,20 @@ export function TransactionManager({
             {editingId ? "Guardar cambios" : "Agregar transacción"}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="text-sm text-slate-500 hover:underline">
+            <button type="button" onClick={resetForm} className="text-sm text-slate-400 hover:underline">
               Cancelar
             </button>
           )}
         </div>
       </form>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="flex flex-wrap gap-3">
         <select
           value={filterAccount}
           onChange={(e) => setFilterAccount(e.target.value)}
-          className="rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+          className="rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
         >
           <option value="all">Todas las cuentas</option>
           {accounts.map((a) => (
@@ -214,7 +214,7 @@ export function TransactionManager({
         <select
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
-          className="rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
+          className="rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1.5 text-sm"
         >
           <option value="all">Todas las categorías</option>
           {categories.map((c) => (
@@ -223,10 +223,10 @@ export function TransactionManager({
         </select>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900 shadow-sm">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-100 text-left text-xs text-slate-500">
+            <tr className="border-b border-slate-700 text-left text-xs text-slate-400">
               <th className="px-4 py-2">Fecha</th>
               <th className="px-4 py-2">Categoría</th>
               <th className="px-4 py-2">Cuenta</th>
@@ -238,7 +238,7 @@ export function TransactionManager({
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-6 text-center text-slate-400">
+                <td colSpan={6} className="px-4 py-6 text-center text-slate-500">
                   Sin transacciones.
                 </td>
               </tr>
@@ -247,24 +247,24 @@ export function TransactionManager({
                 const category = categoryById.get(t.category_id);
                 const account = accountById.get(t.account_id);
                 return (
-                  <tr key={t.id} className="border-b border-slate-50 hover:bg-slate-50">
-                    <td className="px-4 py-2 text-slate-500">{t.date}</td>
+                  <tr key={t.id} className="border-b border-slate-800 hover:bg-slate-800/60">
+                    <td className="px-4 py-2 text-slate-400">{t.date}</td>
                     <td className="px-4 py-2">
                       <span className="inline-flex items-center gap-1.5">
                         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: category?.color }} />
                         {category?.name ?? "—"}
                       </span>
                     </td>
-                    <td className="px-4 py-2 text-slate-500">{account?.name ?? "—"}</td>
-                    <td className="px-4 py-2 text-slate-500">{t.description}</td>
-                    <td className={`px-4 py-2 text-right font-medium ${t.type === "income" ? "text-emerald-600" : "text-red-500"}`}>
+                    <td className="px-4 py-2 text-slate-400">{account?.name ?? "—"}</td>
+                    <td className="px-4 py-2 text-slate-400">{t.description}</td>
+                    <td className={`px-4 py-2 text-right font-medium ${t.type === "income" ? "text-emerald-400" : "text-red-400"}`}>
                       {t.type === "income" ? "+" : "-"}${t.amount.toLocaleString("es-CO")}
                     </td>
                     <td className="px-4 py-2 text-right text-xs">
-                      <button onClick={() => handleEdit(t)} className="mr-2 text-indigo-600 hover:underline">
+                      <button onClick={() => handleEdit(t)} className="mr-2 text-indigo-400 hover:underline">
                         Editar
                       </button>
-                      <button onClick={() => handleDelete(t.id)} className="text-red-500 hover:underline">
+                      <button onClick={() => handleDelete(t.id)} className="text-red-400 hover:underline">
                         Eliminar
                       </button>
                     </td>

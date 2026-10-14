@@ -20,11 +20,11 @@ export function TransaccionesTabs({
 
   return (
     <div>
-      <div className="mb-4 inline-flex gap-1 rounded-xl border border-slate-200 bg-slate-100 p-1 text-sm">
+      <div className="mb-4 inline-flex gap-1 rounded-xl border border-slate-700 bg-slate-800 p-1 text-sm">
         <button
           onClick={() => setTab("transacciones")}
           className={`rounded-lg px-3 py-1.5 font-medium transition ${
-            tab === "transacciones" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-600 hover:bg-white/60"
+            tab === "transacciones" ? "bg-slate-700 text-indigo-300 shadow-sm" : "text-slate-300 hover:bg-slate-600/60"
           }`}
         >
           Transacciones
@@ -32,7 +32,7 @@ export function TransaccionesTabs({
         <button
           onClick={() => setTab("transferencias")}
           className={`rounded-lg px-3 py-1.5 font-medium transition ${
-            tab === "transferencias" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-600 hover:bg-white/60"
+            tab === "transferencias" ? "bg-slate-700 text-indigo-300 shadow-sm" : "text-slate-300 hover:bg-slate-600/60"
           }`}
         >
           Transferencias

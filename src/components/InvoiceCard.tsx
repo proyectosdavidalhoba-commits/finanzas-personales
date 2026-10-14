@@ -18,9 +18,9 @@ const STATUS_LABEL: Record<InvoiceWithDetails["status"], string> = {
 };
 
 const STATUS_CLASS: Record<InvoiceWithDetails["status"], string> = {
-  pending: "bg-red-50 text-red-600",
-  partial: "bg-amber-50 text-amber-700",
-  paid: "bg-emerald-50 text-emerald-700",
+  pending: "bg-red-900/40 text-red-300",
+  partial: "bg-amber-900/40 text-amber-300",
+  paid: "bg-emerald-900/40 text-emerald-300",
 };
 
 function todayStr() {
@@ -120,42 +120,42 @@ export function InvoiceCard({
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
         className="flex w-full flex-wrap items-center justify-between gap-2 text-left"
       >
         <div>
-          <p className="text-sm font-semibold text-slate-800">{invoice.client_name}</p>
-          <p className="text-xs text-slate-400">{invoice.date} · {invoice.items.length} producto(s)</p>
+          <p className="text-sm font-semibold text-slate-100">{invoice.client_name}</p>
+          <p className="text-xs text-slate-500">{invoice.date} · {invoice.items.length} producto(s)</p>
         </div>
         <div className="flex items-center gap-3">
           <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_CLASS[invoice.status]}`}>
             {STATUS_LABEL[invoice.status]}
           </span>
-          <span className="text-sm font-semibold text-slate-700">${invoice.total.toLocaleString("es-CO")}</span>
-          <span className="text-xs text-slate-400">{expanded ? "Ocultar" : "Ver detalle"}</span>
+          <span className="text-sm font-semibold text-slate-200">${invoice.total.toLocaleString("es-CO")}</span>
+          <span className="text-xs text-slate-500">{expanded ? "Ocultar" : "Ver detalle"}</span>
         </div>
       </button>
 
       {expanded && (
-        <div className="mt-4 space-y-4 border-t border-slate-100 pt-4">
-          {error && <p className="text-sm text-red-600">{error}</p>}
+        <div className="mt-4 space-y-4 border-t border-slate-700 pt-4">
+          {error && <p className="text-sm text-red-400">{error}</p>}
 
           <div>
-            <p className="mb-2 text-xs font-semibold text-slate-600">Productos</p>
+            <p className="mb-2 text-xs font-semibold text-slate-300">Productos</p>
             <table className="w-full text-sm">
               <tbody>
                 {invoice.items.map((item) => (
-                  <tr key={item.id} className="border-b border-slate-50">
-                    <td className="py-1.5 text-slate-700">{item.product_name}</td>
-                    <td className="py-1.5 text-slate-500">{item.quantity} × ${item.unit_price.toLocaleString("es-CO")}</td>
-                    <td className="py-1.5 text-right text-slate-700">
+                  <tr key={item.id} className="border-b border-slate-800">
+                    <td className="py-1.5 text-slate-200">{item.product_name}</td>
+                    <td className="py-1.5 text-slate-400">{item.quantity} × ${item.unit_price.toLocaleString("es-CO")}</td>
+                    <td className="py-1.5 text-right text-slate-200">
                       ${(item.quantity * item.unit_price).toLocaleString("es-CO")}
                     </td>
                     <td className="py-1.5 text-right">
-                      <button onClick={() => handleDeleteItem(item.id)} className="text-xs text-red-500 hover:underline">
+                      <button onClick={() => handleDeleteItem(item.id)} className="text-xs text-red-400 hover:underline">
                         Quitar
                       </button>
                     </td>
@@ -169,7 +169,7 @@ export function InvoiceCard({
                 placeholder="Producto"
                 value={newItem.product_name}
                 onChange={(e) => setNewItem({ ...newItem, product_name: e.target.value })}
-                className="rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                className="rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
               />
               <input
                 type="number"
@@ -178,7 +178,7 @@ export function InvoiceCard({
                 placeholder="Unidades"
                 value={newItem.quantity}
                 onChange={(e) => setNewItem({ ...newItem, quantity: Number(e.target.value) })}
-                className="rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                className="rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
               />
               <input
                 type="number"
@@ -187,12 +187,12 @@ export function InvoiceCard({
                 placeholder="Precio unitario"
                 value={newItem.unit_price}
                 onChange={(e) => setNewItem({ ...newItem, unit_price: Number(e.target.value) })}
-                className="rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                className="rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
               />
               <button
                 type="submit"
                 disabled={isPending}
-                className="rounded-lg bg-slate-700 px-3 py-1 text-xs font-medium text-white hover:bg-slate-600 disabled:opacity-60"
+                className="rounded-lg bg-slate-600 px-3 py-1 text-xs font-medium text-white hover:bg-slate-500 disabled:opacity-60"
               >
                 + Agregar producto
               </button>
@@ -200,17 +200,17 @@ export function InvoiceCard({
           </div>
 
           <div>
-            <p className="mb-2 text-xs font-semibold text-slate-600">
+            <p className="mb-2 text-xs font-semibold text-slate-300">
               Pagos (pagado: ${invoice.paid.toLocaleString("es-CO")} · pendiente: ${invoice.remaining.toLocaleString("es-CO")})
             </p>
             {invoice.payments.length === 0 ? (
-              <p className="text-xs text-slate-400">Sin pagos registrados.</p>
+              <p className="text-xs text-slate-500">Sin pagos registrados.</p>
             ) : (
               <ul className="space-y-1">
                 {invoice.payments.map((p) => (
                   <li key={p.id} className="flex items-center justify-between text-sm">
-                    <span className="text-slate-600">{p.date} · ${p.amount.toLocaleString("es-CO")}</span>
-                    <button onClick={() => handleDeletePayment(p.id)} className="text-xs text-red-500 hover:underline">
+                    <span className="text-slate-300">{p.date} · ${p.amount.toLocaleString("es-CO")}</span>
+                    <button onClick={() => handleDeletePayment(p.id)} className="text-xs text-red-400 hover:underline">
                       Eliminar
                     </button>
                   </li>
@@ -221,11 +221,11 @@ export function InvoiceCard({
             {canRegisterPayment ? (
               <form onSubmit={handleRegisterPayment} className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:items-end">
                 <div>
-                  <label className="block text-xs text-slate-500">Cuenta</label>
+                  <label className="block text-xs text-slate-400">Cuenta</label>
                   <select
                     value={payment.account_id}
                     onChange={(e) => setPayment({ ...payment, account_id: e.target.value })}
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                    className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
                   >
                     {accounts.map((a) => (
                       <option key={a.id} value={a.id}>{a.name}</option>
@@ -233,11 +233,11 @@ export function InvoiceCard({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500">Categoría</label>
+                  <label className="block text-xs text-slate-400">Categoría</label>
                   <select
                     value={payment.category_id}
                     onChange={(e) => setPayment({ ...payment, category_id: e.target.value })}
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                    className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
                   >
                     {incomeCategories.map((c) => (
                       <option key={c.id} value={c.id}>{c.name}</option>
@@ -245,7 +245,7 @@ export function InvoiceCard({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500">Monto</label>
+                  <label className="block text-xs text-slate-400">Monto</label>
                   <input
                     type="number"
                     step="0.01"
@@ -253,16 +253,16 @@ export function InvoiceCard({
                     max={invoice.remaining}
                     value={payment.amount}
                     onChange={(e) => setPayment({ ...payment, amount: Number(e.target.value) })}
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                    className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500">Fecha</label>
+                  <label className="block text-xs text-slate-400">Fecha</label>
                   <input
                     type="date"
                     value={payment.date}
                     onChange={(e) => setPayment({ ...payment, date: e.target.value })}
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-2 py-1 text-sm"
+                    className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-800 text-slate-100 px-2 py-1 text-sm"
                   />
                 </div>
                 <button
@@ -274,11 +274,11 @@ export function InvoiceCard({
                 </button>
               </form>
             ) : (
-              invoice.remaining <= 0 && <p className="mt-2 text-xs text-emerald-600">Factura totalmente pagada.</p>
+              invoice.remaining <= 0 && <p className="mt-2 text-xs text-emerald-400">Factura totalmente pagada.</p>
             )}
           </div>
 
-          <button onClick={handleDeleteInvoice} className="text-xs text-red-500 hover:underline">
+          <button onClick={handleDeleteInvoice} className="text-xs text-red-400 hover:underline">
             Eliminar factura completa
           </button>
         </div>

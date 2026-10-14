@@ -14,7 +14,7 @@ export default async function TransaccionesPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Transacciones</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Transacciones</h1>
       <TransaccionesTabs
         transactions={(transactions as Transaction[]) ?? []}
         transfers={(transfers as Transfer[]) ?? []}

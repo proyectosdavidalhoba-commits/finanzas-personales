@@ -85,14 +85,14 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-semibold text-slate-900">Resumen</h1>
+      <h1 className="text-xl font-semibold text-slate-50">Resumen</h1>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <StatCard label="Balance total" value={balance} tone="text-indigo-600" />
-        <StatCard label="Ingresos del mes" value={monthIncome} tone="text-emerald-600" />
-        <StatCard label="Egresos del mes" value={monthExpense} tone="text-red-500" />
-        <StatCard label="Por cobrar" value={totalReceivable} tone="text-amber-600" />
-        <StatCard label="Por pagar" value={totalPayable} tone="text-orange-600" />
+        <StatCard label="Balance total" value={balance} tone="text-indigo-400" />
+        <StatCard label="Ingresos del mes" value={monthIncome} tone="text-emerald-400" />
+        <StatCard label="Egresos del mes" value={monthExpense} tone="text-red-400" />
+        <StatCard label="Por cobrar" value={totalReceivable} tone="text-amber-400" />
+        <StatCard label="Por pagar" value={totalPayable} tone="text-orange-400" />
       </div>
 
       <DashboardCharts pieData={pieData} barData={barData} />
@@ -102,8 +102,8 @@ export default async function DashboardPage() {
 
 function StatCard({ label, value, tone }: { label: string; value: number; tone: string }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <p className="text-xs font-medium text-slate-500">{label}</p>
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
+      <p className="text-xs font-medium text-slate-400">{label}</p>
       <p className={`mt-1 text-2xl font-semibold ${tone}`}>${value.toLocaleString("es-CO")}</p>
     </div>
   );

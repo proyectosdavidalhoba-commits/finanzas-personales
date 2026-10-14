@@ -60,7 +60,7 @@ export default async function CuentasPorCobrarPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-xl font-semibold text-slate-900">Cuentas por cobrar</h1>
+      <h1 className="mb-4 text-xl font-semibold text-slate-50">Cuentas por cobrar</h1>
       <InvoiceManager
         invoices={invoicesWithDetails}
         accounts={(accounts as Account[]) ?? []}
