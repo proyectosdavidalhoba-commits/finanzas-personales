@@ -58,7 +58,7 @@ export function AccountManager({
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div>
           <label className="block text-xs font-medium text-slate-600">Nombre</label>
           <input
@@ -106,7 +106,7 @@ export function AccountManager({
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <div className="rounded-xl bg-white p-4 shadow-sm">
+      <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         {accounts.length === 0 ? (
           <p className="text-sm text-slate-400">Sin cuentas todavía.</p>
         ) : (

@@ -102,7 +102,7 @@ export default async function DashboardPage() {
 
 function StatCard({ label, value, tone }: { label: string; value: number; tone: string }) {
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <p className="text-xs font-medium text-slate-500">{label}</p>
       <p className={`mt-1 text-2xl font-semibold ${tone}`}>${value.toLocaleString("es-CO")}</p>
     </div>

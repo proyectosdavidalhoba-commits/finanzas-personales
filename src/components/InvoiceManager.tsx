@@ -68,7 +68,7 @@ export function InvoiceManager({
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="space-y-3 rounded-xl bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="flex flex-wrap gap-3">
           <div>
             <label className="block text-xs font-medium text-slate-600">Cliente</label>

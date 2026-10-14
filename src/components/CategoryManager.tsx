@@ -54,7 +54,7 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div>
           <label className="block text-xs font-medium text-slate-600">Nombre</label>
           <input
@@ -120,7 +120,7 @@ function CategoryGroup({
   onDelete: (id: string) => void;
 }) {
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <h2 className="mb-3 text-sm font-semibold text-slate-700">{title}</h2>
       {items.length === 0 ? (
         <p className="text-sm text-slate-400">Sin categorías todavía.</p>

@@ -113,7 +113,7 @@ export function TransactionManager({
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl bg-white p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-6">
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-3 lg:grid-cols-6">
         <div>
           <label className="block text-xs font-medium text-slate-600">Tipo</label>
           <select
@@ -223,7 +223,7 @@ export function TransactionManager({
         </select>
       </div>
 
-      <div className="overflow-x-auto rounded-xl bg-white shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-slate-100 text-left text-xs text-slate-500">

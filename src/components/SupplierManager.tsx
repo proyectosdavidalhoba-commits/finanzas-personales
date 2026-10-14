@@ -47,7 +47,7 @@ export function SupplierManager({ suppliers }: { suppliers: Supplier[] }) {
   }
 
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <p className="mb-3 text-sm font-semibold text-slate-700">Proveedores</p>
 
       <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3">

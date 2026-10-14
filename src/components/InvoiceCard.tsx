@@ -120,7 +120,7 @@ export function InvoiceCard({
   }
 
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}

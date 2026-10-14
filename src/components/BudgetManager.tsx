@@ -98,7 +98,7 @@ export function BudgetManager({
           Crea primero alguna categoría de egreso para poder definir presupuestos.
         </p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl bg-white p-4 shadow-sm">
+        <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
           <div>
             <label className="block text-xs font-medium text-slate-600">Categoría</label>
             <select
@@ -150,7 +150,7 @@ export function BudgetManager({
             const pct = Math.min(100, Math.round((spent / b.amount_limit) * 100));
             const over = spent > b.amount_limit;
             return (
-              <div key={b.id} className="rounded-xl bg-white p-4 shadow-sm">
+              <div key={b.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700">
                     <span className="h-2 w-2 rounded-full" style={{ backgroundColor: category?.color }} />
